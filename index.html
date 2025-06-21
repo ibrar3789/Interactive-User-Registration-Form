@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .gender-options {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .checkbox-label {
+      margin-top: 20px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #message {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>User Registration</h2>
+    <form id="registrationForm">
+      <label>First Name</label>
+      <input type="text" name="firstName" required>
+
+      <label>Last Name</label>
+      <input type="text" name="lastName" required>
+
+      <label>Email Address</label>
+      <input type="email" name="email" required>
+
+      <label>Password</label>
+      <input type="password" id="password" required>
+
+      <label>Confirm Password</label>
+      <input type="password" id="confirmPassword" required>
+
+      <label>Date of Birth</label>
+      <input type="date" name="dob" required>
+
+      <label>Gender</label>
+      <div class="gender-options">
+        <label><input type="radio" name="gender" value="Male" required> Male</label>
+        <label><input type="radio" name="gender" value="Female" required> Female</label>
+        <label><input type="radio" name="gender" value="Other" required> Other</label>
+      </div>
+
+      <label class="checkbox-label">
+        <input type="checkbox" id="terms" required> I agree to the Terms and Conditions
+      </label>
+
+      <button type="submit">Register</button>
+    </form>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const message = document.getElementById('message');
+      const terms = document.getElementById('terms');
+
+      message.textContent = '';
+
+      if (password !== confirmPassword) {
+        event.preventDefault();
+        message.textContent = 'Passwords do not match!';
+        return false;
+      }
+
+      if (!terms.checked) {
+        event.preventDefault();
+        message.textContent = 'Please agree to the terms and conditions.';
+        return false;
+      }
+
+      alert('Form submitted successfully!');
+    });
+  </script>
+</body>
+</html>
